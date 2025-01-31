@@ -28,7 +28,8 @@ class VacancyDtoTest {
         assertEquals("", vacancyDto.description)
         assertEquals(CompanyDto(Long.MIN_VALUE, ""), vacancyDto.companyDto)
 
-        val vacancyDto2 = VacancyDto(Long.MAX_VALUE, "a".repeat(1000), "b".repeat(1000), CompanyDto(Long.MAX_VALUE, "c".repeat(1000)))
+        val vacancyDto2 =
+            VacancyDto(Long.MAX_VALUE, "a".repeat(1000), "b".repeat(1000), CompanyDto(Long.MAX_VALUE, "c".repeat(1000)))
         assertEquals(Long.MAX_VALUE, vacancyDto2.id)
         assertEquals("a".repeat(1000), vacancyDto2.name)
         assertEquals("b".repeat(1000), vacancyDto2.description)
