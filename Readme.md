@@ -48,3 +48,7 @@ $ ./gradlew bootRun
   Starting StartkS_2_6_15_ApplicationKt using Java 17.0.7
 ...
 ````
+
+### Частные параметры в application.yaml
+
+Реализуется классом __ru.perm.v.vacancy.config.MyConfig__. Используется н.п. в CompanyServiceImpl.kt.
