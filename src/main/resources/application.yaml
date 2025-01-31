@@ -1,4 +1,4 @@
 myconfig:
-  remoteHost: http://127.0.0.1:8080/vacancy/api
+  remoteHost: http://127.0.0.1:8980/vacancy/api
   companyRestUrl: /company
   vacancyRestUrl: /vacancy

@@ -11,12 +11,19 @@ import ru.perm.v.vacancy.service.CompanyService
 @Service
 class CompanyServiceImpl : CompanyService {
     private val logger = LoggerFactory.getLogger(this.javaClass.name)
+
     @Autowired
     lateinit var myConfig: MyConfig
 
-    val restCompanyClient = RestTemplate()
+    val restTemplate = RestTemplate()
 
     override fun getByN(n: Long): CompanyDto {
-        TODO("Not yet implemented")
+        logger.info("Get company by n=$n")
+        logger.info("myConfig.companyRestUrl: " + myConfig.companyRestUrl)
+        logger.info("rest: " + myConfig.remoteHost + myConfig.companyRestUrl)
+        val url = myConfig.remoteHost + myConfig.companyRestUrl + "/$n"
+        logger.info("url: " + url)
+        val companyDTO = restTemplate.getForObject(url, CompanyDto::class.java)
+        return companyDTO!!
     }
 }

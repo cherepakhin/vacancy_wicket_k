@@ -12,11 +12,11 @@ class MyConfigSpringBootTest {
 
     @Test
     fun companyRestUrlTest() {
-        assertEquals("http://127.0.0.1:8080/vacancy/api/company", myConfig.remoteHost + myConfig.companyRestUrl)
+        assertEquals("http://127.0.0.1:8980/vacancy/api/company", myConfig.remoteHost + myConfig.companyRestUrl)
     }
 
     @Test
     fun vacancyRestUrlTest() {
-        assertEquals("http://127.0.0.1:8080/vacancy/api/vacancy", myConfig.remoteHost + myConfig.vacancyRestUrl)
+        assertEquals("http://127.0.0.1:8980/vacancy/api/vacancy", myConfig.remoteHost + myConfig.vacancyRestUrl)
     }
 }
