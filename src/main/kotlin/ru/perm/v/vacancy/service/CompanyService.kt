@@ -5,4 +5,5 @@ import ru.perm.v.vacancy.dto.CompanyDto
 interface CompanyService {
     @Throws(Exception::class)
     fun getByN(n:Long): CompanyDto
+    fun getAll(): List<CompanyDto>
 }
