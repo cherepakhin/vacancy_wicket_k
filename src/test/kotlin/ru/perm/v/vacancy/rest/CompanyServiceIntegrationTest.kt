@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
-import ru.perm.v.vacancy.config.MyConfig
 
 /**
  * Перед запуском теста проект /prog/kolin/vacancy_backend НУЖНО запустить! (НУЖНО ЗАМОКАТЬ!)

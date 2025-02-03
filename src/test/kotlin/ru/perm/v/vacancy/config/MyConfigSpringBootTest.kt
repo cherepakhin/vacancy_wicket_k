@@ -15,15 +15,22 @@ class MyConfigSpringBootTest {
 
     @Value("\${myconfig.companyRestUrl}")
     val companyRestUrl: String? = null
+    @Value("\${myconfig.vacancyRestUrl}")
+    val vacancyRestUrl: String? = null
 
     @Test
-    fun companyRestUrlTest() {
+    fun companyRestUrlParamTest() {
         assertEquals("http://127.0.0.1:8980/vacancy/api", remoteHost)
     }
 
     @Test
-    fun companyRestHostTest() {
+    fun companyRestHostParamTest() {
         assertEquals("/company", companyRestUrl)
+    }
+
+    @Test
+    fun vacancyRestHostParamTest() {
+        assertEquals("/vacancy", vacancyRestUrl)
     }
 
 }
