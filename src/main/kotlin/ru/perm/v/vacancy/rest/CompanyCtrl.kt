@@ -18,4 +18,10 @@ class CompanyCtrl {
     fun echo(@PathVariable("id") id:Long): CompanyDto {
         return companyService.getByN(id)
     }
+
+    @GetMapping("/")
+    fun getAll(): List<CompanyDto> {
+        return companyService.getAll()
+    }
+
 }

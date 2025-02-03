@@ -49,6 +49,16 @@ $ ./gradlew bootRun
 ...
 ````
 
+### Profiles
+
+В проекте 2 profile application-dev.yaml, application-test.yaml. Profile application.yaml подключается всегда. В нем параметры общие для обоих наборов переменных (dev, test).
+
+В качестве альтернативы можно указать следующее в файле src/test/resources/application.yaml:
+
+````shell
+spring.profiles.active=test
+````
+
 ### Частные параметры в application.yaml
 
 Реализуется классом __ru.perm.v.vacancy.config.MyConfig__. Используется н.п. в CompanyServiceImpl.kt.

@@ -3,30 +3,31 @@ package ru.perm.v.vacancy.rest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 import ru.perm.v.vacancy.config.MyConfig
-import ru.perm.v.vacancy.dto.CompanyDto
-import ru.perm.v.vacancy.service.impl.CompanyServiceImpl
 
 /**
- * Перед запуском теста проект /prog/kolin/vacancy_backend нужно запустить! (НУЖНО ЗАМОКАТЬ!)
+ * Перед запуском теста проект /prog/kolin/vacancy_backend НУЖНО запустить! (НУЖНО ЗАМОКАТЬ!)
  */
-@SpringBootTest(classes = arrayOf(MyConfig::class))
+@SpringBootTest
+@ActiveProfiles("test")
 class CompanyServiceIntegrationTest {
 
-    @Autowired
-    lateinit var myConfig: MyConfig
-
+    @Value("\${myconfig.remoteHost}")
+    val remoteHost: String? = null
 //    @MockkBean
 //    val projectRestTemplate = Mockito.mock(ProjectRestTemplate::class.java)
 
     @Test
-    fun getByN() {
-        val companyService = CompanyServiceImpl()
-
-        val company = companyService.getByN(1)
-
-        assertEquals(CompanyDto(1, "COMPANY_1"), company)
+    fun getMyConfigRemoteHost() {
+        assertEquals("http://127.0.0.1:8980/vacancy/api", remoteHost)
+//        val companyService = CompanyServiceImpl()
+//
+//        val company = companyService.getByN(1)
+//
+//        assertEquals(CompanyDto(1, "COMPANY_1"), company)
     }
 
 //    @Test

@@ -1,5 +1,9 @@
 package ru.perm.v.vacancy.dto
 
+//import kotlinx.serialization.*
+//import kotlinx.serialization.json.Json
+//
+//@Serializable
 class CompanyDto(val n: Long, val name: String) {
 
     override fun equals(other: Any?): Boolean {
