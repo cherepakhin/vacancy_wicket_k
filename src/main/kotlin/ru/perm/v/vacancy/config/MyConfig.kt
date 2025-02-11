@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties
 class MyConfig {
     var remoteHost: String = ""
-
     var companyRestUrl: String = ""
-
     var vacancyRestUrl: String = ""
 
     private val logger = LoggerFactory.getLogger(this.javaClass.name)

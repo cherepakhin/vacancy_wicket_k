@@ -1,11 +1,14 @@
 package ru.perm.v.vacancy.service
 
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import ru.perm.v.vacancy.dto.CompanyDto
 
 @Service
 class ProjectRestTemplate {
+
+    private val logger = LoggerFactory.getLogger(this.javaClass.name)
 
     fun getForObjectList(url: String): Any {
 // for list
@@ -15,7 +18,7 @@ class ProjectRestTemplate {
 //      val response = RestTemplate().getForObject(url, CompanyDto::class.java)
 
 //        val response = RestTemplate().getForObject(url, Array<CompanyDto>::class.java)
-        val response = RestTemplate().getForObject(url, List::class.java);
+        val response = RestTemplate().getForObject(url, List::class.java)
 
         return response
     }
@@ -32,4 +35,7 @@ class ProjectRestTemplate {
         return response
     }
 
+//    fun getForEntity(url: String): ResponseEntity {
+//        RestTemplate().getForEntity(url)
+//    }
 }

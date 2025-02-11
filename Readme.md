@@ -66,3 +66,7 @@ spring.profiles.active=dev
 ### Частные параметры в application.yaml
 
 Реализуется классом __ru.perm.v.vacancy.config.MyConfig__. Используется н.п. в CompanyServiceImpl.kt.
+
+Ссылки:
+
+[https://cwiki.apache.org/confluence/display/wicket/spring](https://cwiki.apache.org/confluence/display/wicket/spring)

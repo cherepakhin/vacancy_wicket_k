@@ -58,5 +58,7 @@ class CompanyServiceImpl : CompanyService {
         return ArrayList()
     }
 
-
+    override fun config(): MyConfig {
+        return myConfig
+    }
 }
