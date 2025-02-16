@@ -15,7 +15,7 @@ import ru.perm.v.vacancy.dto.CompanyDto
  */
 @SpringBootTest
 @ActiveProfiles("dev")
-class ProjectTemplateForServicesTest {
+class RestTemplateForServicesTest {
     @Autowired
     val projectRestTemplate: ProjectRestTemplate? = null
 
