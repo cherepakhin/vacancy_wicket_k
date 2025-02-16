@@ -34,7 +34,7 @@ class CompanyServiceImpl : CompanyService {
         logger.info("Get company by n=$n")
         logger.info("myConfig.companyRestUrl: " + companyRestUrl)
         logger.info("rest: " + companyRestUrl)
-        val url = companyRestUrl + "/$n"
+        val url = remoteHost + companyRestUrl + "/$n"
         logger.info("url: " + url)
 
         val companyDTO = projectRestTemplate.getForObjectCompany(url)
