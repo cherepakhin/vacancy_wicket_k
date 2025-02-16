@@ -2,8 +2,8 @@ package ru.perm.v.vacancy.service.impl
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import ru.perm.v.vacancy.config.MyConfig
 import ru.perm.v.vacancy.dto.CompanyDto
 import ru.perm.v.vacancy.service.CompanyService
 import ru.perm.v.vacancy.service.ProjectRestTemplate
@@ -11,8 +11,12 @@ import kotlin.jvm.javaClass
 
 @Service
 class CompanyServiceImpl : CompanyService {
-    @Autowired
-    lateinit var myConfig: MyConfig
+
+    @Value("\${myconfig.remoteHost}")
+    val remoteHost: String? = null
+
+    @Value("\${myconfig.companyRestUrl}")
+    val companyRestUrl: String? = null
 
     @Autowired
     lateinit var projectRestTemplate: ProjectRestTemplate
@@ -22,9 +26,9 @@ class CompanyServiceImpl : CompanyService {
     override fun getByN(n: Long): CompanyDto {
 
         logger.info("Get company by n=$n")
-        logger.info("myConfig.companyRestUrl: " + myConfig.companyRestUrl)
-        logger.info("rest: " + myConfig.remoteHost + myConfig.companyRestUrl)
-        val url = myConfig.remoteHost + myConfig.companyRestUrl + "/$n"
+        logger.info("myConfig.companyRestUrl: " + remoteHost + companyRestUrl)
+        logger.info("rest: " + remoteHost + companyRestUrl)
+        val url = remoteHost + companyRestUrl + "/$n"
         logger.info("url: " + url)
 
         val companyDTO = projectRestTemplate.getForObjectCompany(url)
@@ -33,7 +37,8 @@ class CompanyServiceImpl : CompanyService {
 
     override fun getAll(): List<CompanyDto> {
         logger.info("Get all companies")
-        val url = myConfig.remoteHost + myConfig.companyRestUrl +"/"
+        logger.info("myConfig.companyRestUrl: " + remoteHost + companyRestUrl)
+        val url = remoteHost + companyRestUrl
         logger.info("url: " + url)
         var companies = projectRestTemplate.getForObjectList(url)
         logger.info("companies: " + companies)
@@ -45,7 +50,7 @@ class CompanyServiceImpl : CompanyService {
 //        val customer = theGson
 //            .fromJson(customerObject, Customer::class.java);
 //        jacksonObjectMapper().
-        for(dto in listCompany) {
+        for (dto in listCompany) {
             logger.info("company: " + dto)
 //            logger.info(dto?.javaClass?.name)
 //            val gson = Gson()
@@ -56,9 +61,5 @@ class CompanyServiceImpl : CompanyService {
 //            logger.info(c.name)
         }
         return ArrayList()
-    }
-
-    override fun config(): MyConfig {
-        return myConfig
     }
 }
