@@ -1,6 +1,7 @@
 package ru.perm.v.vacancy.rest
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -42,9 +43,12 @@ class CompanyServiceIntegrationTest {
 //        assertEquals("-", myConfig?.remoteHost)
 //    }
 
+    @BeforeEach
+    fun initDB() {
+    }
     @Test
     fun checkRemoteHostValue() {
-        assertEquals("http://127.0.0.1:8980/vacancy/test/api", remoteHost)
+        assertEquals("http://127.0.0.1:8980/vacancy/api", remoteHost)
 
 //        val company = companyService?.getByN(COMPANY_N)
 //        assertEquals(CompanyDto(COMPANY_N, ""), company)
@@ -64,7 +68,6 @@ class CompanyServiceIntegrationTest {
     @Test
     fun getAll() {
         val companies = companyService.getAll()
-
         assertEquals(4, companies.size)
         assertEquals(CompanyDto(n = -1, name = "-"), companies[0])
         assertEquals(CompanyDto(n = 1, name = "COMPANY_1"), companies[1])

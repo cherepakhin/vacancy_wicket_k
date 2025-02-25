@@ -19,6 +19,6 @@ class ConfigForMainDev {
 
     @Test
     fun getMyConfigRemoteHost() {
-        assertEquals("http://127.0.0.1:8980/vacancy/test/api", remoteHost)
+        assertEquals("http://127.0.0.1:8980/vacancy/api", remoteHost)
     }
 }

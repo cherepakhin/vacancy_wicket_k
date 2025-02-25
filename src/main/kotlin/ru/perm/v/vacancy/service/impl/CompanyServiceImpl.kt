@@ -30,10 +30,10 @@ class CompanyServiceImpl : CompanyService {
     private val logger = LoggerFactory.getLogger(this.javaClass.name)
 
     override fun getByN(n: Long): CompanyDto {
-
         logger.info("Get company by n=$n")
         logger.info("myConfig.companyRestUrl: " + companyRestUrl)
         logger.info("rest: " + companyRestUrl)
+
         val url = remoteHost + companyRestUrl + "/$n"
         logger.info("url: " + url)
 

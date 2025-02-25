@@ -20,9 +20,9 @@ class ProjectRestTemplate {
 //      val response = RestTemplate().getForObject(url, CompanyDto::class.java)
 
 //        val response = RestTemplate().getForObject(url, Array<CompanyDto>::class.java)
-        val response = RestTemplate().exchange<List<CompanyDto>>(url, HttpMethod.GET,
-            null, object : ParameterizedTypeReference<List<CompanyDto>>() {})
-
+        val response = RestTemplate().getForEntity(url, List::class.java).body as List<CompanyDto>
+//        val response = RestTemplate().exchange<List<CompanyDto>>(url, HttpMethod.GET,
+//            null, object : ParameterizedTypeReference<List<CompanyDto>>() {})
         return response
     }
 

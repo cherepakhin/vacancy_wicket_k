@@ -1,10 +1,21 @@
 package ru.perm.v.vacancy.dto
 
-//import kotlinx.serialization.*
-//import kotlinx.serialization.json.Json
-//
-//@Serializable
-class CompanyDto(val n: Long, val name: String) {
+import kotlinx.serialization.Serializable
+
+@Serializable
+class CompanyDto {
+    var n: Long = -1L
+    var name: String = ""
+
+    // need for jackson
+    constructor() {
+
+    }
+
+    constructor(n: Long, name: String) :this() {
+        this.n = n
+        this.name = name
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
