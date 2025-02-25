@@ -41,7 +41,6 @@ class RestTemplateForServicesTest {
         assertEquals(CompanyDto(1, "COMPANY_1"), company)
     }
 
-
     @Test
     fun getAllCheckBody_WithProjectRestTemplateAndGson() {
         val json = RestTemplate().getForEntity(remoteHost + "/company/", String::class.java).body
@@ -53,37 +52,6 @@ class RestTemplateForServicesTest {
         assertEquals(CompanyDto(1, "COMPANY_1"), companies[1])
         assertEquals(CompanyDto(2, "COMPANY_2"), companies.get(2))
         assertEquals(CompanyDto(3, "3_COMPANY"), companies.get(3))
-    }
-
-    @Test
-    fun getAllCheckBody_WithProjectRestTemplateAndJacksonAndBody() {
-        val response = RestTemplate().getForEntity(remoteHost + "/company/", Array::class.java).body
-        assertEquals(4, response.size)
-        assertEquals(java.util.LinkedHashMap::class.java, response[0]!!.javaClass)
-    }
-
-    @Test
-    fun getAllCheckBody_WithProjectRestTemplateAndJacksonAndBodyConvert() {
-        val response = RestTemplate().getForEntity(remoteHost + "/company/",
-            String::class.java).body
-        val mapper = ObjectMapper()
-        val type = mapper.getTypeFactory().constructParametricType(
-            List::class.java, CompanyDto::class.java);
-        val companies = mapper.readValue<List<CompanyDto>>(response, type)
-
-        assertEquals(4, companies.size)
-        assertEquals(CompanyDto(-1L, "-"), companies[0])
-        assertEquals(CompanyDto(1, "COMPANY_1"), companies[1])
-        assertEquals(CompanyDto(2, "COMPANY_2"), companies.get(2))
-        assertEquals(CompanyDto(3, "3_COMPANY"), companies.get(3))
-    }
-
-    @Test
-    fun getAllCheckBody_WithProjectRestTemplate() {
-        val response = RestTemplate().getForEntity(remoteHost + "/company/",
-            Array::class.java).body
-        assertEquals(4, response.size)
-        assertEquals(java.util.LinkedHashMap::class.java, response[0]!!.javaClass)
     }
 
     @Test
@@ -100,4 +68,36 @@ class RestTemplateForServicesTest {
         assertEquals(CompanyDto(3, "3_COMPANY"), companies.get(3))
     }
 
+    // received to LinkedHashMap (((
+    @Test
+    fun getAllCheckBody_WithProjectRestTemplateAndJacksonAndBodyAsArray() {
+        val response = RestTemplate().getForEntity(remoteHost + "/company/", Array::class.java).body
+        assertEquals(4, response.size)
+        assertEquals(java.util.LinkedHashMap::class.java, response[0]!!.javaClass)
+    }
+
+    @Test
+    fun getAllCheckBody_WithProjectRestTemplateAndJacksonAndBodyConvert() {
+        val jsonString = RestTemplate().getForEntity(remoteHost + "/company/",
+            String::class.java).body
+        val mapper = ObjectMapper()
+        // convert to LIST with TYPE CompanyDto
+        val type = mapper.getTypeFactory().constructParametricType(
+            List::class.java, CompanyDto::class.java);
+        val companies = mapper.readValue<List<CompanyDto>>(jsonString, type)
+
+        assertEquals(4, companies.size)
+        assertEquals(CompanyDto(-1L, "-"), companies[0])
+        assertEquals(CompanyDto(1, "COMPANY_1"), companies[1])
+        assertEquals(CompanyDto(2, "COMPANY_2"), companies.get(2))
+        assertEquals(CompanyDto(3, "3_COMPANY"), companies.get(3))
+    }
+
+    @Test
+    fun getAllCheckBody_WithProjectRestTemplate() {
+        val response = RestTemplate().getForEntity(remoteHost + "/company/",
+            Array::class.java).body
+        assertEquals(4, response.size)
+        assertEquals(java.util.LinkedHashMap::class.java, response[0]!!.javaClass)
+    }
 }

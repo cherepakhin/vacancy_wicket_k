@@ -67,6 +67,12 @@ spring.profiles.active=dev
 
 Реализуется классом __ru.perm.v.vacancy.config.MyConfig__. Используется н.п. в CompanyServiceImpl.kt.
 
+### Конвертирование JSON с массивом в список объектов
+
+ru.perm.v.vacancy.service.RestTemplateForServicesTest
+
+В основном используется JacksonMapper. Но показаны примеры для GSon.
+
 Ссылки:
 
 [https://cwiki.apache.org/confluence/display/wicket/spring](https://cwiki.apache.org/confluence/display/wicket/spring)
