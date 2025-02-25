@@ -44,9 +44,6 @@ class RestTemplateForServicesTest {
 
     @Test
     fun getAllCheckBody_WithProjectRestTemplateAndGson() {
-//        val response = RestTemplate().getForEntity(remoteHost + "/company/", List::class.java).body as List<CompanyDto>
-//        assertEquals(4, response.size)
-
         val json = RestTemplate().getForEntity(remoteHost + "/company/", String::class.java).body
         val typeToken = object : TypeToken<kotlin.collections.List<CompanyDto>>() {}.type
         val companies = Gson().fromJson<List<CompanyDto>>(json, typeToken)
@@ -93,11 +90,8 @@ class RestTemplateForServicesTest {
     fun getAllCheckBody_WithProjectRestTemplateAsReceiveStringToJackson() {
 
         val jacksonMapper = jacksonObjectMapper()
-//        val typeFactory = jacksonMapper.typeFactory.constructCollectionType(List::class.java, CompanyDto::class.java)
         val json = RestTemplate().getForEntity(remoteHost + "/company/", String::class.java).body
         val companies: List<CompanyDto> = jacksonMapper.readValue(json)
-//        val typeToken = object : TypeToken<kotlin.collections.List<CompanyDto>>() {}.type
-//        val companies = Gson().fromJson<List<CompanyDto>>(json, typeToken)
 
         assertEquals(4, companies.size)
         assertEquals(CompanyDto(-1L, "-"), companies[0])
