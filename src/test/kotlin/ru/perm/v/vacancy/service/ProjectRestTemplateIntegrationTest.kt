@@ -26,10 +26,28 @@ class ProjectRestTemplateIntegrationTest {
     @Test
     fun checkWorkRestTemplate() {
         val COMPANY_N = 1L
-        val response = projectRestTemplate?.getForObjectCompany("http://127.0.0.1:8980/vacancy/api/company/${COMPANY_N}")
+        val companyDTO = projectRestTemplate?.getForObjectCompany("http://127.0.0.1:8980/vacancy/api/company/${COMPANY_N}")
 
-        assert(response != null)
-        assertEquals(CompanyDto(COMPANY_N, "COMPANY_1"), response)
+        assert(companyDTO != null)
+        assertEquals(CompanyDto(COMPANY_N, "COMPANY_1"), companyDTO)
+    }
+
+    @Test
+    fun forEntity() {
+        val url = "http://127.0.0.1:8980/vacancy/api/company/1"
+
+        val company = RestTemplate().getForEntity(url, CompanyDto::class.java).body as CompanyDto
+
+        assertEquals(1, company.n)
+    }
+
+    @Test
+    fun forResponseEntity() {
+        val url = "http://127.0.0.1:8980/vacancy/api/company/1"
+
+      val responseEntity = RestTemplate().getForEntity(url, CompanyDto::class.java)
+
+        assertEquals(CompanyDto(1,"COMPANY_1"), responseEntity.body)
     }
 
     @Test
@@ -40,11 +58,4 @@ class ProjectRestTemplateIntegrationTest {
         assertEquals(4, companies.size)
     }
 
-    @Test
-    fun forEntity() {
-        val url = "http://127.0.0.1:8980/vacancy/api/company/1"
-        val company = RestTemplate().getForEntity(url, CompanyDto::class.java).body as CompanyDto
-
-        assertEquals(1, company.n)
-    }
 }

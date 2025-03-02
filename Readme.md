@@ -82,6 +82,39 @@ ru.perm.v.vacancy.service.RestTemplateForServicesTest
 
 В основном используется JacksonMapper. Но показаны примеры для GSon.
 
+Замечания:
+
+Примеры конвертации body REST ответа в объект:
+
+````kotlin
+@Test
+fun checkWorkRestTemplate() {
+    val COMPANY_N = 1L
+    val companyDTO = projectRestTemplate?.getForObjectCompany("http://127.0.0.1:8980/vacancy/api/company/${COMPANY_N}")
+
+    assert(companyDTO != null)
+    assertEquals(CompanyDto(COMPANY_N, "COMPANY_1"), companyDTO)
+}
+
+@Test
+fun forEntity() {
+    val url = "http://127.0.0.1:8980/vacancy/api/company/1"
+
+    val company = RestTemplate().getForEntity(url, CompanyDto::class.java).body as CompanyDto
+
+    assertEquals(1, company.n)
+}
+
+@Test
+fun forResponseEntity() {
+    val url = "http://127.0.0.1:8980/vacancy/api/company/1"
+
+    val responseEntity = RestTemplate().getForEntity(url, CompanyDto::class.java)
+
+    assertEquals(CompanyDto(1,"COMPANY_1"), responseEntity.body)
+}
+````
+
 Ссылки:
 
 [https://cwiki.apache.org/confluence/display/wicket/spring](https://cwiki.apache.org/confluence/display/wicket/spring)
