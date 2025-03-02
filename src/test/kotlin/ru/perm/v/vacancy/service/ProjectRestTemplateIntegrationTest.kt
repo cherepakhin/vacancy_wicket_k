@@ -26,7 +26,7 @@ class ProjectRestTemplateIntegrationTest {
     @Test
     fun checkWorkRestTemplate() {
         val COMPANY_N = 1L
-        val response = projectRestTemplate?.getForObjectCompany(remoteHost + "/company/${COMPANY_N}")
+        val response = projectRestTemplate?.getForObjectCompany("http://127.0.0.1:8980/vacancy/api/company/${COMPANY_N}")
 
         assert(response != null)
         assertEquals(CompanyDto(COMPANY_N, "COMPANY_1"), response)
