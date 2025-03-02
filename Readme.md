@@ -1,18 +1,25 @@
 ## Frontend Wicket проект для работы вакансиями
 
-НЕ СДЕЛАНО. В ПРОЕКТЕ ФАЙЛЫ ИЗ КАКОГО-ТО СТАРОГО ПРОЕКТА.
-
-Kotlin, Spring Boot 2.5.6, Gradle, build.gradle.kts, Java 11 
+Kotlin, Spring Boot 2.5.6, Gradle, build.gradle.kts 
 Проект должен предоставлять Wicket интерфейс и , в качестве backend, использовать проект 
 [https://github.com/cherepakhin/vacancy_backend](https://github.com/cherepakhin/vacancy_backend)
 
+````shell
+$ echo $JAVA_HOME
+/usr/lib/jvm/java-17-openjdk-amd64
+````
+
 ### Тесты
+
+Перед тестами, запустить проект [https://github.com/cherepakhin/vacancy_backend](https://github.com/cherepakhin/vacancy_backend)
 
 ````shell
 ./gradlew test
 ````
 
 ### Запуск
+
+Перед тестами, запустить проект [https://github.com/cherepakhin/vacancy_backend](https://github.com/cherepakhin/vacancy_backend)
 
 Для Java 11
 

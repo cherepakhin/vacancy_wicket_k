@@ -1,7 +1,6 @@
 package ru.perm.v.vacancy.service.impl
 
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
@@ -9,9 +8,9 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import ru.perm.v.vacancy.dto.CompanyDto
 import ru.perm.v.vacancy.service.CompanyService
-import ru.perm.v.vacancy.service.ProjectRestTemplate
 import kotlin.jvm.javaClass
 
+// Перед тестами, запустить проект vacancy_backend
 //TODO: add tests. see RestTemplateForServicesTest, ...
 @Service
 class CompanyServiceImpl : CompanyService {
