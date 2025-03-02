@@ -1,11 +1,8 @@
 package ru.perm.v.vacancy.service
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import ru.perm.v.vacancy.dto.CompanyDto
@@ -18,31 +15,8 @@ import ru.perm.v.vacancy.dto.CompanyDto
 @ActiveProfiles("test")
 class CompanyServiceIntegrationTest {
 
-    private val logger = LoggerFactory.getLogger(this.javaClass.name)
-
-    // так правильно внедрять значение частного параметра
-    @Value("\${myconfig.remoteHost}")
-    val remoteHost: String? = null
-
     @Autowired
     lateinit var companyService: CompanyService
-
-// так НЕ получится
-//    @Value("\${myconfig}")
-//    val myConfig: MyConfig? = null
-// надо так:
-//    @Value("\${myconfig.remoteHost}")
-//    val remoteHost: String? = null
-//
-//    Тест пройдет, но это не то что нужно. Значения из application.yaml не будут видны.
-//    @Test
-//    fun checkMyConfig() {
-//        assertEquals("-", myConfig?.remoteHost)
-//    }
-
-    @BeforeEach
-    fun initDB() {
-    }
 
     @Test
     fun getByN() {
