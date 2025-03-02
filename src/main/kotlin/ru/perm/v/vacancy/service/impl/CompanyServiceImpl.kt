@@ -1,6 +1,5 @@
 package ru.perm.v.vacancy.service.impl
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -8,7 +7,6 @@ import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.client.getForEntity
 import ru.perm.v.vacancy.dto.CompanyDto
 import ru.perm.v.vacancy.service.CompanyService
 import ru.perm.v.vacancy.service.ProjectRestTemplate
@@ -24,8 +22,8 @@ class CompanyServiceImpl : CompanyService {
     @Value("\${myconfig.companyRestUrl}")
     val companyRestUrl: String? = null
 
-    @Autowired
-    lateinit var projectRestTemplate: ProjectRestTemplate
+//    @Autowired
+//    lateinit var projectRestTemplate: ProjectRestTemplate
 
     private val logger = LoggerFactory.getLogger(this.javaClass.name)
 
@@ -36,9 +34,13 @@ class CompanyServiceImpl : CompanyService {
 
         val url = remoteHost + companyRestUrl + "/$n"
         logger.info("url: " + url)
-
-        val companyDTO = projectRestTemplate.getForObjectCompany(url)
-        return companyDTO as CompanyDto
+        // можно так
+        // val companyDTO = projectRestTemplate.getForObjectCompany(url)
+        // но так лучше
+        val result = RestTemplate().exchange(url, HttpMethod.GET,
+            null, object : ParameterizedTypeReference<CompanyDto>() {})
+        val companyDTO = result.body as CompanyDto
+        return companyDTO
     }
 
     override fun getAll(): List<CompanyDto> {
@@ -52,7 +54,7 @@ class CompanyServiceImpl : CompanyService {
         logger.info("urlCompany: $urlCompany")
         val result = RestTemplate().exchange(urlCompany, HttpMethod.GET,
             null, object : ParameterizedTypeReference<List<CompanyDto>>() {})
-        val listCompanies= result.body as List<CompanyDto>
+        val listCompanies = result.body as List<CompanyDto>
         logger.info("listCompanies: " + listCompanies)
 //        logger.info("listCompanies[0]: " + listCompanies[0].javaClass.name)
 //        logger.info("listCompanies[0]: " + listCompanies[0])

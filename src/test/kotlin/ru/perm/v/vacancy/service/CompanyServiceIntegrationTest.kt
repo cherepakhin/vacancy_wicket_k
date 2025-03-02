@@ -1,4 +1,4 @@
-package ru.perm.v.vacancy.rest
+package ru.perm.v.vacancy.service
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import ru.perm.v.vacancy.dto.CompanyDto
-import ru.perm.v.vacancy.service.CompanyService
 
 /**
  * Перед запуском теста проект /prog/kotlin/vacancy_backend НУЖНО запустить,
@@ -18,8 +17,6 @@ import ru.perm.v.vacancy.service.CompanyService
 @SpringBootTest
 @ActiveProfiles("test")
 class CompanyServiceIntegrationTest {
-//    @Autowired
-//    val projectRestTemplate: ProjectRestTemplate? = null
 
     private val logger = LoggerFactory.getLogger(this.javaClass.name)
 
@@ -45,15 +42,6 @@ class CompanyServiceIntegrationTest {
 
     @BeforeEach
     fun initDB() {
-    }
-    @Test
-    fun checkRemoteHostValue() {
-        assertEquals("http://127.0.0.1:8980/vacancy/api", remoteHost)
-
-//        val company = companyService?.getByN(COMPANY_N)
-//        assertEquals(CompanyDto(COMPANY_N, ""), company)
-//        val response = projectRestTemplate?.getForEntity(remoteHost + "/company/")
-//        assertEquals("OK", response)
     }
 
     @Test

@@ -93,6 +93,7 @@ class RestTemplateForServicesTest {
         assertEquals(CompanyDto(3, "3_COMPANY"), companies.get(3))
     }
 
+    // Оставлен для примера где может появиться  LinkedHashMap
     @Test
     fun getAllCheckBody_WithProjectRestTemplate() {
         val response = RestTemplate().getForEntity(remoteHost + "/company/",
